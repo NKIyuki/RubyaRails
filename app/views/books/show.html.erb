@@ -1,0 +1,9 @@
+<h2>Taitle:</h2>
+<p><%= @book.title %></p>
+
+<h2>Body:</h2>
+<p><%= @book.body %></p>
+
+<%= link_to "Show",edit_book_path(@book.id)%>
+<%= link_to "Destroy",book_path(@book.id), method: :delete, "data-confirm"=>"本当に削除しますか？"%>
+

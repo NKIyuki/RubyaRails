@@ -30,7 +30,21 @@
     </table>
 
   <h2>New book</h2>
+  <% if @book.errors.any? %>
+   <%= @book.errors.count %>erros prohibited this book from being saved:
+   <u1>
+    <% @book.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+    <% end %>
+   </u1>
 
 <%= form_with model: Book.new do |f| %>
+  <h6>Title</h6>
   <%= f.text_field :title %>
+
+  <h6>Body</h6>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Create Book' %>
+
   <% end %>

@@ -1,8 +1,7 @@
-<h1>Books</h1>
-<% @book.each do |book| %>
-<body>
+
     <p id="notice"></p>
     <h1>Books</h1>
+
     <table>
         <thead>
             <tr>
@@ -11,52 +10,27 @@
                 <th colspan="3"></th>
             </tr>
         </thead>
-    </table>
     <tbody>
-      <tr>
+  <% @book.each do |book| %>
+       <tr>
           <td>トラブル知らずのシステム設計</td>
           <td>システム設計の要点を図解で説明してくれます</tb>
           <td>
-              <a href="/book_pas">Show</a>
+              <%= link_to "Show", book_path(book.id),method: :get %>
           </td>
           <td>
-              <a href="edit_book_path">Edit</a>
+              <%= link_to "Edit", edit_book_path(book.id) %>
           </td>
           <td>
-              <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="edit_book_path">Destroy</a>
+              <%= link_to"Destroy", book_path(book.id),method: :delete,"data-confirm" => "Are you sure?"  %>
           </td>
      </tr>
-
-<p>Title</p>
-
-<span>
-  <%= book.title %>
-</span>
-
-<p>Body</p>
-
-<span>
-   <%= book.body %>
-</span>
+  <% end %>
     </tbody>
     </table>
+
   <h2>New book</h2>
-  <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post">
-      <input name="utf8" type="hidden" value="✔">
-      <input type="hidden" name="authenticity_token" value="DpJ5+WVjL8uyOX+Oh2iN4fGjZNAoLQO0JJtvIMOIIHrlr/sjRb/iGYu1mgbWXQrkBcpCcNyPDBYMTTzHg8yx+Q==">
-      <div class="field">
-          <label for="book_title">Title</label>
-          <input class="book_title" type="text#" name="book[title]" id="book_title">
-      </div>
-      <div class="field">
-          <label for="book_body">Body</label>
-          <textarea class="book_body" namw="book[body]" id="book_body"></textarea>
-      </div>
-      <div class="actions">
-          <input type="submit" name"commit" value="CreateBooks" data-disable-with="Create Books"
-      </div>
 
-  </form>
-
-</body>
-<% end %>
+<%= form_with model: Book.new do |f| %>
+  <%= f.text_field :title %>
+  <% end %>

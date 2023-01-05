@@ -11,10 +11,10 @@
             </tr>
         </thead>
     <tbody>
-  <% @book.each do |book| %>
+  <% @books.each do |book| %>
        <tr>
-          <td>トラブル知らずのシステム設計</td>
-          <td>システム設計の要点を図解で説明してくれます</tb>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
           <td>
               <%= link_to "Show", book_path(book.id),method: :get %>
           </td>
@@ -37,6 +37,7 @@
      <li><%= message %></li>
     <% end %>
    </u1>
+   <% end %>
 
 <%= form_with model: Book.new do |f| %>
   <h6>Title</h6>
@@ -47,4 +48,4 @@
 
   <%= f.submit 'Create Book' %>
 
-  <% end %>
+　<% end %>

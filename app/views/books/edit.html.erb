@@ -1,4 +1,17 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <h1>Editing Book</h1>
+
+<% if @book.errors.any? %>
+   <%= @book.errors.count %>errors prohibited this book from being saved:
+   <u1>
+    <% @book.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+    <% end %>
+   </u1>
+   <% end %>
 
 <%= form_with model: @book,url: book_path(@book.id),method: :patch do |f| %>
 
